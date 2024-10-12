@@ -64,7 +64,7 @@ public abstract class Cache<R> {
         R value = getValueFromCache(cacheKey);
 
         if (value == null) {
-            logger.log(Level.INFO, "Value not found in cache, loading from file");
+            logger.log(Level.INFO, "Value not found in cache, loading from cache");
             loadValueIntoCache(cacheKey);
             value = getValueFromCache(cacheKey);
         }

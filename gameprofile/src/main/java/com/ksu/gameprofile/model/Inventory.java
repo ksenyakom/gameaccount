@@ -6,8 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 @Entity
@@ -15,14 +13,14 @@ public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long itemId;
+    private Long inventoryId;
 
-    @Column(nullable = false)
-    private long customerId;
+    @Column(name = "inventory_name", nullable = false, length = 50)
+    private String inventoryName;
 
-    @Column(nullable = false)
-    private int itemCount;
+    @Column(name = "inventory_type", length = 50)
+    private String inventoryType;
 
-    @Column
-    private boolean consumable;
+    @Column(name = "rarity", length = 50)
+    private String rarity;
 }

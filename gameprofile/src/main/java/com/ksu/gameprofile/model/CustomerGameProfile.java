@@ -15,12 +15,18 @@ public class CustomerGameProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long profileId;
+    private Long profileId;
 
-    @Column(nullable = false)
-    private long customerId;
+    @Column(name = "customer_id", nullable = false)
+    private Long customerId;
 
-    @Column(nullable = false)
-    private String itemName;
+    @Column(name = "game_level", nullable = false)
+    private int gameLevel;
+
+    @Column(name = "experience", nullable = false)
+    private int experience;
+
+    @Column(name = "game_currency_balance", nullable = false)
+    private int gameCurrencyBalance;
 
 }

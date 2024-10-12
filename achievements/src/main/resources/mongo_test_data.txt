@@ -1,0 +1,88 @@
+db.Achievement.insertMany([
+    {
+        achievementId: "ACH001",
+        achievementName: "First Blood",
+        timestamp: "2024-01-01T10:00:00Z",
+        reward: "100 Gold"
+    },
+    {
+        achievementId: "ACH002",
+        achievementName: "Master Explorer",
+        timestamp: "2024-02-15T14:30:00Z",
+        reward: "Explorer's Hat"
+    },
+    {
+        achievementId: "ACH003",
+        achievementName: "Dungeon Conqueror",
+        timestamp: "2024-03-05T18:45:00Z",
+        reward: "500 Gold"
+    },
+    {
+        achievementId: "ACH004",
+        achievementName: "Sharp Shooter",
+        timestamp: "2024-04-10T09:20:00Z",
+        reward: "Golden Bow"
+    },
+    {
+        achievementId: "ACH005",
+        achievementName: "Puzzle Master",
+        timestamp: "2024-05-22T11:50:00Z",
+        reward: "Mystic Key"
+    }
+]);
+
+db.Statistics.insertMany([
+    {
+        statName: "Games Played",
+        customerId: 1,
+        timestamp: "2024-10-10T14:00:00Z"
+    },
+    {
+        statName: "Games Won",
+        customerId: 1,
+        timestamp: "2024-10-10T15:00:00Z"
+    },
+    {
+        statName: "High Score",
+        customerId: 2,
+        timestamp: "2024-10-09T18:30:00Z"
+    },
+    {
+        statName: "Games Played",
+        customerId: 3,
+        timestamp: "2024-10-08T09:00:00Z"
+    },
+    {
+        statName: "Games Won",
+        customerId: 4,
+        timestamp: "2024-10-11T20:45:00Z"
+    }
+]);
+
+db.CustomerAchievement.insertMany([
+    {
+        achieventId: "ACH001",
+        customerId: 1,
+        timestamp: "2024-10-10T12:00:00Z"
+    },
+    {
+        achieventId: "ACH002",
+        customerId: 2,
+        timestamp: "2024-10-09T14:30:00Z"
+    },
+    {
+        achieventId: "ACH003",
+        customerId: 3,
+        timestamp: "2024-10-08T16:45:00Z"
+    },
+    {
+        achieventId: "ACH001",
+        customerId: 4,
+        timestamp: "2024-10-07T09:15:00Z"
+    },
+    {
+        achieventId: "ACH004",
+        customerId: 5,
+        timestamp: "2024-10-11T11:50:00Z"
+    }
+]);

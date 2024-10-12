@@ -2,6 +2,7 @@ package com.ksu.gameprofile.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.ksu.gameprofile.cache.InventoryCache;
 import com.ksu.gameprofile.model.Inventory;
 import com.ksu.gameprofile.repository.InventoryRepository;
 import com.ksu.gameprofile.service.exception.EntityNotFoundException;
@@ -12,9 +13,15 @@ public class InventoryService {
     @Autowired
     private InventoryRepository inventoryRepository;
 
-    public Inventory find(long inventoryId) {
-        return inventoryRepository.findById(inventoryId)
-                .orElseThrow(EntityNotFoundException::new);
+    @Autowired
+    private InventoryCache inventoryCache;
 
+    public Inventory find(Long inventoryId) {
+        Inventory inventory = inventoryCache.getValue(new InventoryCache.InventoryCacheKey(inventoryId));
+
+        if (inventory == null) {
+            throw new EntityNotFoundException("Inventory not found");
+        }
+        return inventory;
     }
 }

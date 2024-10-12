@@ -16,13 +16,13 @@ public class CustomerInventory {
     private long id;
 
     @Column(nullable = false)
-    private long itemId;
+    private long inventoryId;
 
     @Column(nullable = false)
     private long customerId;
 
     @Column(nullable = false)
-    private int itemCount;
+    private int inventoryCount;
 
     @Column
     private boolean consumable;

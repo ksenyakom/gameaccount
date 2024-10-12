@@ -5,16 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import com.ksu.gameprofile.model.Customer;
 import com.ksu.gameprofile.model.CustomerInventory;
-import com.ksu.gameprofile.model.Inventory;
 import com.ksu.gameprofile.repository.CustomerInventoryRepository;
 import com.ksu.gameprofile.service.exception.EntityNotFoundException;
-import reactor.core.publisher.Mono;
 
 @Service
 public class CustomerInventoryService {
 
     private final CustomerInventoryRepository customerInventoryRepository;
-    //todo cache
     private final InventoryService inventoryService;
     private final WebClient webClient;
 
@@ -26,7 +23,6 @@ public class CustomerInventoryService {
         this.customerInventoryRepository = customerInventoryRepository;
         this.inventoryService = inventoryService;
         this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
-        ;
     }
 
     public CustomerInventory find(long customerId) {
@@ -35,7 +31,7 @@ public class CustomerInventoryService {
     }
 
     public CustomerInventory save(CustomerInventory customerInventory) {
-        inventoryService.find(customerInventory.getItemId());
+        inventoryService.find(customerInventory.getInventoryId());
         Customer customer = getCustomer(customerInventory.getCustomerId());
 
         if (customer == null) {
