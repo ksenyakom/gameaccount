@@ -1,0 +1,98 @@
+version: '2'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "35432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+
+  mongo:
+    image: mongo:5.0
+    ports:
+      - 37017:27017
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    restart: always
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 2181:2181
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    restart: always
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+      - 9093:9093
+      - 9997:9997
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://kafka:9092,OUTSIDE://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9092,OUTSIDE://localhost:9093
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_JMX_PORT: 9997
+      KAFKA_JMX_HOSTNAME: kafka
+
+  kafka_ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka_ui
+    ports:
+      - 8090:8080
+    restart: always
+    environment:
+      - DYNAMIC_CONFIG_ENABLED=true
+    links:
+      - kafka
+      - zookeeper
+
+
+  prometheus:
+    image: prom/prometheus
+#    depends_on:
+#      - metrics-app
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      - otus
+    restart: always
+    hostname: prometheus
+
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
+    networks:
+      - otus
+    restart: always
+
+  loki:
+    image: grafana/loki:2.9.7
+    container_name: loki
+    ports:
+      - 3100:3100
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - otus
+
+networks:
+  otus:
+    driver: bridge
