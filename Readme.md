@@ -10,7 +10,8 @@ Spring Boot, Postgres
 Spring Boot, Postgres
 8082
 
-CustomerInventoryController - сквозное логирование - ходит в cusotmerprofile
+CustomerInventoryController - сквозное логирование - ходит в cusotmerprofile - не работает
+localhost:8082/customer/inventory - тут кеш
 
 ### Achievements:
 (Achievements, CustomerAchievements, Statistics) 
