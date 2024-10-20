@@ -38,7 +38,7 @@ public class CountStatisticsJob {
         Set<Long> customers;
         try {
         ExecutorService executorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
-            customers = statisticsService.getAllCustomers();
+            customers = customerAchievementService.getAllCustomers();
             for (Long customerId : customers) {
                 executorService.submit(() -> this.countStatistics(customerId));
             }

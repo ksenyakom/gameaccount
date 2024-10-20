@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ksu.achievements.model.Achievement;
 import com.ksu.achievements.model.CustomerAchievement;
-import com.ksu.achievements.service.AchievementService;
 import com.ksu.achievements.service.CustomerAchievementService;
 
 @RestController
@@ -22,9 +20,9 @@ public class CustomerAchievementController {
     @Autowired
     private CustomerAchievementService customerAchievementService;
 
-    @GetMapping
-    public List<CustomerAchievement> getList() {
-        return customerAchievementService.findAll();
+    @GetMapping("/{id}")
+    public List<CustomerAchievement> getList(@PathVariable("id") Long customerId) {
+        return customerAchievementService.findAll(customerId);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

@@ -3,7 +3,7 @@ create table if not exists payment
 (
     transaction_id  bigserial NOT NULL  PRIMARY KEY,
     customer_id     bigserial NOT NULL,
-    created_at      timestamp,
+    created_at      varchar(50),
     amount          numeric,
     currency        varchar(10),
     status          varchar(20)

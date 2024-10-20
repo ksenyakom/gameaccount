@@ -1,4 +1,4 @@
-db.Achievement.insertMany([
+db.achievement.insertMany([
     {
         achievementId: "ACH001",
         achievementName: "First Blood",
@@ -31,7 +31,7 @@ db.Achievement.insertMany([
     }
 ]);
 
-db.Statistics.insertMany([
+db.statistics.insertMany([
     {
         statName: "Games Played",
         customerId: 1,
@@ -61,27 +61,27 @@ db.Statistics.insertMany([
 
 db.CustomerAchievement.insertMany([
     {
-        achieventId: "ACH001",
+        achievementId: "ACH001",
         customerId: 1,
         timestamp: "2024-10-10T12:00:00Z"
     },
     {
-        achieventId: "ACH002",
+        achievementId: "ACH002",
         customerId: 2,
         timestamp: "2024-10-09T14:30:00Z"
     },
     {
-        achieventId: "ACH003",
+        achievementId: "ACH003",
         customerId: 3,
         timestamp: "2024-10-08T16:45:00Z"
     },
     {
-        achieventId: "ACH001",
+        achievementId: "ACH001",
         customerId: 4,
         timestamp: "2024-10-07T09:15:00Z"
     },
     {
-        achieventId: "ACH004",
+        achievementId: "ACH004",
         customerId: 5,
         timestamp: "2024-10-11T11:50:00Z"
     }

@@ -17,4 +17,6 @@ public interface PaymentRepository extends ReactiveCrudRepository<Payment, Long>
 
     @Query("select c.email from Customer c")
     Flux<String> findAllEmails();
+
+    Flux<Payment> findAllByCustomerId(Long customerId);
 }

@@ -1,12 +1,13 @@
 package com.ksu.gameprofile.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import com.ksu.gameprofile.model.Customer;
 import com.ksu.gameprofile.model.CustomerInventory;
 import com.ksu.gameprofile.repository.CustomerInventoryRepository;
-import com.ksu.gameprofile.service.exception.EntityNotFoundException;
 
 @Service
 public class CustomerInventoryService {
@@ -25,9 +26,8 @@ public class CustomerInventoryService {
         this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build();
     }
 
-    public CustomerInventory find(long customerId) {
-        return customerInventoryRepository.findByCustomerId(customerId)
-                .orElseThrow(EntityNotFoundException::new);
+    public List<CustomerInventory> find(long customerId) {
+        return customerInventoryRepository.findByCustomerId(customerId);
     }
 
     public CustomerInventory save(CustomerInventory customerInventory) {

@@ -19,17 +19,4 @@ public class CustomerGameProfileController {
     public CustomerGameProfile getProfile(@PathVariable("id") long gameProfileId) {
         return customerGameProfileService.find(gameProfileId);
     }
-
-
-//
-//    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public Customer login(@RequestBody Customer customer) {
-//        return customerService.findCustomer(customer.getLogin(), customer.getPassword());
-//    }
-//
-//    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity register(@RequestBody Customer customer) {
-//        customerService.saveCustomer(customer);
-//        return new ResponseEntity(HttpStatus.CREATED);
-//    }
 }

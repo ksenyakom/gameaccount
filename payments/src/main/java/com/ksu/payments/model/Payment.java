@@ -2,7 +2,6 @@ package com.ksu.payments.model;
 
 
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -24,7 +23,7 @@ public class Payment {
     private long customerId;
 
     @Column
-    private ZonedDateTime createdAt;
+    private String createdAt;
 
     @Column
     private BigDecimal amount;

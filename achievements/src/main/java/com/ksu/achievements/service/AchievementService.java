@@ -1,10 +1,11 @@
 package com.ksu.achievements.service;
 
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ksu.achievements.kafka.KafkaMessageProducer;
 import com.ksu.achievements.model.Achievement;
 import com.ksu.achievements.repository.AchievementRepository;
 
@@ -20,7 +21,7 @@ public class AchievementService {
     }
 
     public Achievement save(Achievement achievement) {
-        Achievement savedAchievement = achievementRepository.save(achievement);
-        return savedAchievement;
+        achievement.setTimestamp(ZonedDateTime.now(ZoneOffset.UTC).toString());
+        return achievementRepository.save(achievement);
     }
 }
