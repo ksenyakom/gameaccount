@@ -30,4 +30,8 @@ public class CustomerAchievementService {
 
         return saved;
     }
+
+    public List<CustomerAchievement> findAllByCustomerId(Long customerId) {
+        return customerAchievementRepository.findAllByCustomerId(customerId);
+    }
 }

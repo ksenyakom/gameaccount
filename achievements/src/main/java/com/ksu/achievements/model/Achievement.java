@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "Achievement")
+@Document(collection = "achievement")
 public class Achievement {
 
     @Id

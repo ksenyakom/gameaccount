@@ -31,12 +31,3 @@ ToDo list:
 helm to up all services on needed ports
 prometheus grafana
 grpc
-
-
-Plans:
-
-job
-    counts statistics
-
-cache
-    inventory

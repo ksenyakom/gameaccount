@@ -10,7 +10,7 @@ public class CustomerAchievement {
 
     @Id
     private String id;
-    private String achieventId;
+    private String achievementId;
     private long customerId;
     private String timestamp;
 }
