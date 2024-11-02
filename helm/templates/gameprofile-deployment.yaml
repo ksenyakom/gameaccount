@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gameprofile
+spec:
+  replicas: {{ .Values.gameprofile.replicas }}
+  selector:
+    matchLabels:
+      app: gameprofile
+  template:
+    metadata:
+      labels:
+        app: gameprofile
+    spec:
+      containers:
+        - name: gameprofile
+          image: {{ .Values.gameprofile.image }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.gameprofile.servicePort }}
+          env:
+            - name: DB_HOST
+              value: "postgres"
+            - name: DB_USER
+              value: {{ .Values.global.db.user }}
+            - name: DB_PASSWORD
+              value: {{ .Values.global.db.password }}
+            - name: DB_NAME
+              value: {{ .Values.global.db.name }}

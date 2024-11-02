@@ -1,0 +1,55 @@
+#replicaCount: 1  # количество брокеров Kafka
+#
+#controller:
+#  replicaCount: 0
+#
+#zookeeper:
+#  enabled: true  # включает установку Zookeeper
+#  replicaCount: 1
+#
+#image:
+#  repository: "bitnami/kafka:3.5.1-debian-11-r4"
+#  pullPolicy: IfNotPresent
+
+image:
+  repository: "bitnami/kafka"
+  tag: "3.8.0-debian-12-r5"
+  pullPolicy: IfNotPresent
+replicaCount: 1
+persistence:
+  enabled: false
+#    size: 10Gi
+zookeeper:
+  enabled: true  # Включаем Zookeeper для управления Kafka
+  replicaCount: 1
+  port: 2181
+externalAccess:
+  enabled: false  # Включаем или отключаем внешний доступ
+topic:
+  name: "achievements"
+  partitions: 1
+  replicationFactor: 1
+service:
+  type: ClusterIP
+  port: 9092  # Порт для Kafka
+environment:
+  - ALLOW_PLAINTEXT_LISTENER=yes
+  - KAFKA_CFG_PROCESS_ROLES=controller,broker
+volumes:
+  - /var/lib/bitnami/kafka:/bitnami/kafka
+broker:
+  replicaCount: 1
+kraft:
+  enabled: false
+auth:
+  clientProtocol: sasl
+  interBrokerProtocol: sasl
+  sasl:
+    jaas:
+      enabled: true
+    users:
+      - name: "user1"
+        password: "user1Password"
+
+controller:
+  replicaCount: 0

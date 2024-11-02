@@ -59,7 +59,7 @@ db.statistics.insertMany([
     }
 ]);
 
-db.CustomerAchievement.insertMany([
+db.getCollection("customer_achievement").insertMany([
     {
         achievementId: "ACH001",
         customerId: 1,

@@ -1,0 +1,74 @@
+# Global values
+global:
+  db:
+    user: postgres
+    password: password
+    name: customerprofile
+    mongo_uri: "mongodb://mongo:27017/achievements"
+
+achievements:
+  image: "kseniya1/achievements:v1.1"
+  replicas: 1
+  servicePort: 8084
+  nodePort: 30004
+
+# Microservice customerprofile configuration
+customerprofile:
+  image: "kseniya1/customerprofile:v1.1"
+  replicas: 1
+  servicePort: 8080
+  nodePort: 30001
+
+# Microservice gameprofile configuration
+gameprofile:
+  image: "kseniya1/gameprofile:v1.1"
+  replicas: 1
+  servicePort: 8081
+  nodePort: 30002
+
+payments:
+  image: "kseniya1/payments:v1.0"
+  replicas: 1
+  servicePort: 8082
+  nodePort: 30003
+
+# PostgreSQL configuration
+postgres:
+  image: "postgres:14"
+  storageSize: 1Gi
+  port: 5432
+  user: "{{ .Values.global.db.user }}"
+  password: "{{ .Values.global.db.password }}"
+  dbname: "{{ .Values.global.db.name }}"
+
+# Mongo configuration
+mongo:
+  image:
+    repository: bitnami/mongodb
+    tag: 4.4.14-debian-10-r23
+    pullPolicy: IfNotPresent
+  replicaSet:
+    enabled: false
+  auth:
+    enabled: false
+  persistence:
+    enabled: true
+    storageClass: "standard"
+    accessModes:
+      - ReadWriteOnce
+    size: 8Gi
+  service:
+    type: ClusterIP
+    port: 27017
+
+
+# Kafka configuration
+#kafka:
+#  zookeeperService:
+#    type: ClusterIP
+#    port: 2181
+
+# Kafka configuration
+#kafka:
+#  image:
+#    repository: "bitnami/kafka"

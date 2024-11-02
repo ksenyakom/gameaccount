@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: achievements
+spec:
+  replicas: {{ .Values.achievements.replicas }}
+  selector:
+    matchLabels:
+      app: achievements
+  template:
+    metadata:
+      labels:
+        app: achievements
+    spec:
+      containers:
+        - name: achievements
+          image: {{ .Values.achievements.image }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.achievements.servicePort }}
+          env:
+            - name: MONGO_URI
+              value: {{ .Values.global.db.mongo_uri }}

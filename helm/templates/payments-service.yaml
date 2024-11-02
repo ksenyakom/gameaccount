@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments
+spec:
+  selector:
+    app: payments
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: {{ .Values.payments.servicePort }}
+      nodePort: {{ .Values.payments.nodePort }}
+  type: NodePort

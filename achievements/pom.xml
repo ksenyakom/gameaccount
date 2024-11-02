@@ -11,6 +11,7 @@
     <groupId>com.ksu</groupId>
     <artifactId>achievements</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>achievements</name>
     <description>achievements</description>
     <url/>

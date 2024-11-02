@@ -1,0 +1,18 @@
+
+#postgresqlUsername: postgres
+#postgresqlPassword: password
+#postgresqlDatabase: customerprofie
+
+postgres:
+  image: "postgres:14"
+  storageSize: 1Gi
+  port: 5432
+  user: postgres
+  password: password
+  dbname: customerprofile
+
+initdbScripts:
+  create-databases.sql: |
+    CREATE DATABASE customerprofile;
+    CREATE DATABASE gameprofile;
+    CREATE DATABASE payments;
