@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import com.ksu.gameprofile.model.Customer;
 import com.ksu.gameprofile.model.CustomerInventory;
 import com.ksu.gameprofile.repository.CustomerInventoryRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 @Service
 public class CustomerInventoryService {
@@ -41,6 +42,7 @@ public class CustomerInventoryService {
        return customerInventoryRepository.save(customerInventory);
     }
 
+    @CircuitBreaker(name = "default")
     public Customer getCustomer(long customerId) {
         return this.webClient
                 .get()
