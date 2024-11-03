@@ -20,7 +20,7 @@ public class CustomerGameProfileService {
     private CustomerGameProfileRepository customerGameProfileRepository;
 
     public CustomerGameProfile find(long customerId) {
-        return customerGameProfileRepository.findById(customerId)
+        return customerGameProfileRepository.findByCustomerId(customerId)
                 .orElseThrow(EntityNotFoundException::new);
     }
 
@@ -28,16 +28,4 @@ public class CustomerGameProfileService {
         log.info("Process customer achievement"+ customerAchievement);
         //todo logic
     }
-
-//    public Customer findCustomer(String login, String password) {
-//        String hashedPassword = HashService.hash512(password, ITERATIOIN_NUMBER);
-//        return customerRepository.findOne(login, hashedPassword);
-//    }
-//
-//    public Customer saveCustomer(Customer customer) {
-//        String hashedPassword = HashService.hash512(customer.getPassword(), ITERATIOIN_NUMBER);
-//        customer.setPassword(hashedPassword);
-//
-//        return customerRepository.save(customer);
-//    }
 }
